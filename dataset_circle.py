@@ -3,9 +3,12 @@ import random
 import torch
 
 class DatasetCircle(Dataset):
-    def __init__(self, radius):
+    def __init__(self, radius, is_train):
         self.radius = radius
-        self.size = 10000
+        self.is_train = is_train
+        self.size = 100
+        if self.is_train:
+            self.size = 10000
         self.x = torch.linspace(-radius, radius, self.size)
         self.y = self._x_to_y(self.x)
 

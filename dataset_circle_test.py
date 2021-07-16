@@ -2,7 +2,7 @@ from dataset_circle import DatasetCircle
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 
-dataset = DatasetCircle(radius=10)
+dataset = DatasetCircle(radius=10, is_train=True)
 dataloader = DataLoader(dataset, batch_size=10, shuffle=True)
 
 for x, y, truth in dataloader:

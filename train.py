@@ -8,7 +8,7 @@ def train():
     NUM_EPOCHS = 200
     BATCH_SIZE = 10000
 
-    dataset = DatasetCircle(10)
+    dataset = DatasetCircle(10, is_train=True)
     dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
     model = CircleNet()
     model.train()
