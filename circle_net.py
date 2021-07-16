@@ -16,4 +16,4 @@ class CircleNet(nn.Module):
 
     def forward(self, x):
         x = self.net(x)
-        return F.log_softmax(x, dim=1)
+        return F.softmax(x, dim=1)

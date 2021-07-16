@@ -18,7 +18,8 @@ def test():
         for data, y_true in dataloader:
             y_pred = model(data)
             pred = torch.argmax(y_pred, dim=1, keepdim=True)
-            correct += pred.eq(y_true.data.view_as(pred)).sum()
+            y_true = torch.argmax(y_true, dim=1, keepdim=True)
+            correct += pred.eq(y_true).sum()
             total += 1
             for i in range(len(data)):
                 color = "red"

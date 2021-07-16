@@ -26,13 +26,19 @@ class DatasetCircle(Dataset):
         for i in range(len(y)):
             if(random.randint(0,1)==1):
                 y[i] = -y[i]
+
+            rand = torch.rand(1)
+            if (random.randint(0, 1) == 1):
+                rand = -rand
+            y[i] = y[i] + rand
+
         return y
 
     def __len__(self):
         return len(self.x)
 
     def __getitem__(self, idx):
-        truth = 0
+        truth = torch.tensor([1,0],dtype=torch.float32)
         if idx > self.y.shape[0]/2:
-            truth = 1
+            truth = torch.tensor([0, 1],dtype=torch.float32)
         return torch.tensor([self.x[idx], self.y[idx]]), truth
