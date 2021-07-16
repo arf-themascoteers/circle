@@ -5,7 +5,7 @@ import torch
 class DatasetCircle(Dataset):
     def __init__(self, radius):
         self.radius = radius
-        self.size = 100
+        self.size = 10000
         self.x = torch.linspace(-radius, radius, self.size)
         self.y = self._x_to_y(self.x)
 
@@ -29,4 +29,7 @@ class DatasetCircle(Dataset):
         return len(self.x)
 
     def __getitem__(self, idx):
-        return self.x[idx], self.y[idx], (idx < self.y.shape[0]/2)
+        truth = 0
+        if idx > self.y.shape[0]/2:
+            truth = 1
+        return torch.tensor([self.x[idx], self.y[idx]]), truth
