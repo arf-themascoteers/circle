@@ -5,7 +5,7 @@ from dataset_circle import DatasetCircle
 import matplotlib.pyplot as plt
 
 def test():
-    BATCH_SIZE = 1000
+    BATCH_SIZE = 100
     dataset = DatasetCircle(10, is_train=False)
     dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
     model = CircleNet()
@@ -22,7 +22,7 @@ def test():
             total += 1
             for i in range(len(data)):
                 color = "red"
-                if pred[i].item() == 1:
+                if pred[i].item() == y_true[i].item():
                     color = "green"
                 plt.scatter(data[i][0].item(), data[i][1].item(), color=color)
 
